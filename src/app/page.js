@@ -1,3 +1,4 @@
+"use client"
 import Image from 'next/image'
 import React from 'react'
 import Layout from './components/Layout'
@@ -5,45 +6,40 @@ import Title from './components/Title'
 import InputText from './components/InputText'
 import Button from './components/Button'
 import Card from './components/Card'
-
-const annotations = [
-  {
-    createdAt: "2023-09-06T16:09:50.306Z",
-    id: 248,
-    title: "Anotação 1",
-    subtitle: "Subtítulo da Anotação 1",
-    content: "Conteúdo da Anotação 1",
-  },
-  {
-    createdAt: "2023-09-06T16:15:30.123Z",
-    id: 249,
-    title: "Anotação 2",
-    subtitle: "Subtítulo da Anotação 2",
-    content: "Conteúdo da Anotação 2",
-  },
-  {
-    createdAt: "2023-09-06T16:20:15.789Z",
-    id: 250,
-    title: "Anotação 3",
-    subtitle: "Subtítulo da Anotação 3",
-    content: "Conteúdo da Anotação 3",
-  },
-];
+import {useNotes} from './contexts/NoteContext'
 
 export default function Home() {
+  const {notes, addNote} = useNotes();
+
+  const handleAddNote = (event) =>{
+    event.preventDefault();
+
+    const form = event.target;
+
+    const newNote = {
+      createAt: new Date().toISOString(),
+      title: form.title.value,
+      subtitle: form.subtitle.value,
+      content: form.content.value
+    }
+
+    addNote(newNote);
+    form.reset();
+  }
+
   return (
     <Layout>
       <Title>Fundamentos de React</Title>
 
-      <form className='max-w-md mx-auto space-y-4'>
+      <form className='max-w-md mx-auto space-y-4' onSubmit={handleAddNote}>
         <div className='block'>
-          <InputText placeholder="Title" name="title"></InputText>
+          <InputText placeholder="Title" ToName="title"></InputText>
         </div>
         <div className='block'>
-          <InputText placeholder="Subtitle" name="subtitle"></InputText>
+          <InputText placeholder="Subtitle" ToName="subtitle"></InputText>
         </div>
         <div className='block'>
-          <InputText placeholder="Content" name="content"></InputText>
+          <InputText placeholder="Content" ToName="content"></InputText>
         </div>
         <div className='block'>
           <Button>Enviar</Button>
@@ -51,8 +47,8 @@ export default function Home() {
       </form>
       
       <div className='max-w-md mx-auto mt-8'>
-        {annotations.map((annotation) => (
-          <Card key={annotation.createdAt} {...annotation} />
+        {notes.map((note) => (
+          <Card key={note.createdAt} {...note} />
         ))}
       </div>
 
