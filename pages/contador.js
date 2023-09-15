@@ -1,5 +1,6 @@
 import Breadcrumbs from "@/app/components/Breadcrumbs";
 import Button from "@/app/components/Button";
+import Navbar from "@/app/components/Navbar";
 
 import React, {useState} from "react";
 
@@ -17,6 +18,7 @@ const ContadorApp = () => {
 
     return(
         <div>
+            <Navbar></Navbar>
             <Breadcrumbs></Breadcrumbs>
             <h1>Contador usando useState</h1>
 

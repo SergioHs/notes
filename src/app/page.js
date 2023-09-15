@@ -7,6 +7,7 @@ import InputText from './components/InputText'
 import Button from './components/Button'
 import Card from './components/Card'
 import {useNotes} from './contexts/NoteContext'
+import Navbar from './components/Navbar'
 
 export default function Home() {
   const {notes, addNote} = useNotes();
@@ -29,6 +30,7 @@ export default function Home() {
 
   return (
     <Layout>
+      <Navbar></Navbar>
       <Title>Fundamentos de React</Title>
 
       <form className='max-w-md mx-auto space-y-4' onSubmit={handleAddNote}>
