@@ -11,7 +11,7 @@ function Navbar(){
 
     return (
         <nav className="bg-blue-500 p-4">
-            <ul class="flex space-x-4">
+            <ul className="flex space-x-4">
                 {navItems.map((item, index) => (
                     <li key={index}>
                         <Link href={item.path}>
