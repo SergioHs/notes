@@ -22,7 +22,6 @@ const Breadcrumbs = () => {
                 </li>
 
                 {pathSegments.map((segment, index) => (
-                    <div>                    
                         <li key={index}>
                             <Link className="text-blue-500 hover:text-blue-800"
                                 href={`/${pathSegments.slice(0, index + 1).join('/')}`}>
@@ -30,7 +29,6 @@ const Breadcrumbs = () => {
                             </Link>
                                 {index < pathSegments.length - 1 && ' > '}
                         </li>
-                    </div>
                 ))}
             </ul>
         </div>
